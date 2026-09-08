@@ -1,5 +1,9 @@
 # 9Router — Cloudron App
 
+> Updated fork of [vRobM/9router-cloudron](https://github.com/vRobM/9router-cloudron), originally packaged by Robi. Maintained here by [ericm115](https://github.com/ericm115).
+>
+> This fork updates the upstream 9Router release, bundles Headroom, enables Headroom by default, and raises the memory limit. It is not the original package.
+
 Cloudron community package for [9Router](https://github.com/decolua/9router), a free open-source AI router and token saver for coding tools.
 
 ## What is 9Router?

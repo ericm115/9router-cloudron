@@ -19,8 +19,8 @@
   "minBoxVersion": "9.1.0",
   "memoryLimit": 1073741824,
   "icon": "file://icon.png",
-  "packagerName": "Robi",
-  "packagerUrl": "https://github.com/vRobM",
+  "packagerName": "Eric Morales (updated fork; original package by Robi)",
+  "packagerUrl": "https://github.com/ericm115",
   "addons": {
     "localstorage": {},
     "oidc": {

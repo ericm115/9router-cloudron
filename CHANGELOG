@@ -1,2 +1,8 @@
+[0.3.0]
+* Updated fork maintained by Eric Morales (ericm115), based on vRobM/9router-cloudron by Robi
+* Updated upstream 9Router to 0.5.35
+* Bundled and enabled Headroom token compression
+* Increased memory limit to 1 GB
+
 [0.1.0]
 * Initial release
