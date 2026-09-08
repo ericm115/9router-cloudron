@@ -1,7 +1,7 @@
 {
     "stable": true,
     "versions": {
-        "0.4.0": {
+        "0.4.1": {
             "manifest": {
                 "id": "com.toldyouso.9router",
                 "title": "9Router",
@@ -11,7 +11,7 @@
                 "contactEmail": "vrobm@users.noreply.github.com",
                 "website": "https://github.com/decolua/9router",
                 "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
-                "version": "0.4.0",
+                "version": "0.4.1",
                 "upstreamVersion": "0.5.69",
                 "tags": [
                     "ai",
@@ -39,8 +39,8 @@
                     "https://raw.githubusercontent.com/decolua/9router/master/images/fusion-combo-ui.png"
                 ],
                 "iconUrl": "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
-                "changelog": "* Updated upstream 9Router to 0.5.69\n* Bundled and enabled Headroom token compression\n* Increased memory limit to 1 GB\n* Cloudron OIDC integration and MITM proxy auto-start\n",
-                "dockerImage": "docker.io/emoralesjw/9router:0.4.0"
+                "changelog": "* Fix default-password remote login and password change on first install\n* Updated upstream 9Router to 0.5.69\n* Bundled and enabled Headroom token compression\n* Increased memory limit to 1 GB\n* Cloudron OIDC integration and MITM proxy auto-start\n",
+                "dockerImage": "docker.io/emoralesjw/9router:0.4.1"
             },
             "creationDate": "Tue, 08 Sep 2026 00:00:00 GMT",
             "ts": "Tue, 08 Sep 2026 00:00:00 GMT",

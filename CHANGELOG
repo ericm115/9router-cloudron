@@ -1,3 +1,6 @@
+[0.4.1]
+* Set Cloudron initial password environment so remote first login can proceed
+
 [0.4.0]
 * Updated upstream 9Router to 0.5.69
 * Updated fork maintained by ericm115, based on vRobM/9router-cloudron by Robi
