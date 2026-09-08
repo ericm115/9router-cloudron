@@ -39,11 +39,11 @@
                     "https://raw.githubusercontent.com/decolua/9router/master/images/fusion-combo-ui.png"
                 ],
                 "iconUrl": "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
-                "changelog": "* Cloudron OIDC integration (login with Cloudron account)\n* MITM proxy auto-starts on port 8443 (non-privileged)\n* Token optimization enabled by default\n",
+                "changelog": "* Updated upstream 9Router to 0.5.69\n* Bundled and enabled Headroom token compression\n* Increased memory limit to 1 GB\n* Cloudron OIDC integration and MITM proxy auto-start\n",
                 "dockerImage": "docker.io/emoralesjw/9router:0.4.0"
             },
-            "creationDate": "Tue, 07 Jul 2026 20:00:00 GMT",
-            "ts": "Tue, 07 Jul 2026 20:00:00 GMT",
+            "creationDate": "Tue, 08 Sep 2026 00:00:00 GMT",
+            "ts": "Tue, 08 Sep 2026 00:00:00 GMT",
             "publishState": "testing"
         },
         "0.1.0": {
