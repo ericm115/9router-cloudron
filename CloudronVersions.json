@@ -1,7 +1,7 @@
 {
     "stable": true,
     "versions": {
-        "0.3.0": {
+        "0.4.0": {
             "manifest": {
                 "id": "com.toldyouso.9router",
                 "title": "9Router",
@@ -11,8 +11,8 @@
                 "contactEmail": "vrobm@users.noreply.github.com",
                 "website": "https://github.com/decolua/9router",
                 "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
-                "version": "0.3.0",
-                "upstreamVersion": "0.5.35",
+                "version": "0.4.0",
+                "upstreamVersion": "0.5.69",
                 "tags": [
                     "ai",
                     "agent"
@@ -40,7 +40,7 @@
                 ],
                 "iconUrl": "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
                 "changelog": "* Cloudron OIDC integration (login with Cloudron account)\n* MITM proxy auto-starts on port 8443 (non-privileged)\n* Token optimization enabled by default\n",
-                "dockerImage": "docker.io/emoralesjw/9router:0.3.0"
+                "dockerImage": "docker.io/emoralesjw/9router:0.4.0"
             },
             "creationDate": "Tue, 07 Jul 2026 20:00:00 GMT",
             "ts": "Tue, 07 Jul 2026 20:00:00 GMT",
