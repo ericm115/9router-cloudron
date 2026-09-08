@@ -7,8 +7,8 @@
   "contactEmail": "vrobm@users.noreply.github.com",
   "website": "https://github.com/decolua/9router",
   "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
-  "version": "0.2.0",
-  "upstreamVersion": "0.5.20",
+  "version": "0.3.0",
+  "upstreamVersion": "0.5.35",
   "tags": [
     "ai",
     "agent"
@@ -17,7 +17,7 @@
   "healthCheckPath": "/",
   "manifestVersion": 2,
   "minBoxVersion": "9.1.0",
-  "memoryLimit": 524288000,
+  "memoryLimit": 1073741824,
   "icon": "file://icon.png",
   "packagerName": "Robi",
   "packagerUrl": "https://github.com/vRobM",

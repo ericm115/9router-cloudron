@@ -7,6 +7,7 @@ Cloudron community package for [9Router](https://github.com/decolua/9router), a 
 9Router acts as a smart proxy between AI coding tools (Claude Code, Codex, Cursor, Cline, Copilot, etc.) and 40+ AI providers. Key features:
 
 - **RTK Token Saver** — auto-compresses tool_result content to save 20-40% of tokens
+- **Headroom Token Saver** — local proxy compression for additional context savings
 - **3-tier fallback** — Subscription → Cheap → Free
 - **Multi-account round-robin** with quota tracking
 - **MITM proxy** for transparent tool routing
@@ -18,7 +19,7 @@ Cloudron community package for [9Router](https://github.com/decolua/9router), a 
 2. Default password: `123456` — change it immediately
 3. Add your AI provider API keys in Providers
 4. Point your coding tools to `https://<your-domain>/v1`
-5. Enable Token Saver for 20-40% token savings
+5. Headroom starts automatically on `127.0.0.1:8787` and is enabled in Token Saver settings
 
 ## Installation on Cloudron
 
@@ -38,11 +39,11 @@ cloudron install
 | Component | Detail |
 |-----------|--------|
 | Upstream | https://github.com/decolua/9router |
-| Upstream version | 0.5.20 |
+| Upstream version | 0.5.35 |
 | License | MIT |
 | Port | 20128 |
 | Data | `/app/data` (SQLite, backed up) |
-| Memory | 500 MB |
+| Memory | 1 GB |
 
 ## Publishing
 

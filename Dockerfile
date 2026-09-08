@@ -2,15 +2,20 @@
 
 FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c6637eaf4a41ec4e596c
 
-RUN apt-get update && apt-get install -y --no-install-recommends python3 make g++ && rm -rf /var/lib/apt/lists/*
+ARG UPSTREAM_VERSION=0.5.35
 
-RUN mkdir -p /app/code /app/data
+RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-venv make g++ && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /app/code /app/data /opt/headroom \
+    && python3 -m venv /opt/headroom \
+    && /opt/headroom/bin/pip install --no-cache-dir "headroom-ai[proxy]" \
+    && git clone --branch "v${UPSTREAM_VERSION}" --depth 1 https://github.com/decolua/9router.git /tmp/9router
+
 WORKDIR /app/code
-
-COPY upstream/package.json ./
+RUN cp /tmp/9router/package.json ./
 RUN npm install
 
-COPY upstream/ ./
+RUN cp -r /tmp/9router/. ./
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
@@ -28,6 +33,9 @@ ENV PORT=20128
 ENV HOSTNAME=0.0.0.0
 ENV DATA_DIR=/app/data
 ENV MITM_PORT=8443
+ENV HEADROOM_URL=http://127.0.0.1:8787
+ENV HEADROOM_CONFIG_DIR=/app/data/headroom
+ENV HEADROOM_BEACON=off
 
 COPY start.sh ./
 COPY CloudronManifest.json ./

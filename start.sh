@@ -3,6 +3,22 @@ set -euo pipefail
 
 # Cloudron MITM: use non-privileged port (443 requires root)
 export MITM_PORT="${MITM_PORT:-8443}"
+export HEADROOM_URL="${HEADROOM_URL:-http://127.0.0.1:8787}"
+
+if [[ ! -x /opt/headroom/bin/headroom ]]; then
+    echo "Headroom installation missing" >&2
+    exit 1
+fi
+
+mkdir -p /app/data/headroom
+chown -R cloudron:cloudron /app/data/headroom
+gosu cloudron:cloudron /opt/headroom/bin/headroom proxy --host 127.0.0.1 --port 8787 --no-telemetry > /app/data/headroom/proxy.log 2>&1 &
+HEADROOM_PID=$!
+sleep 2
+if ! kill -0 "$HEADROOM_PID" 2>/dev/null; then
+    echo "Failed to start Headroom" >&2
+    exit 1
+fi
 
 # Reset ownership of persistent data directory
 chown -R cloudron:cloudron /app/data
@@ -29,6 +45,9 @@ try {
   settings.mitmRouterBaseUrl = 'http://localhost:20128';
   // Use non-privileged port for Cloudron container
   settings.mitmPort = parseInt(process.env.MITM_PORT, 10) || 8443;
+  settings.headroomEnabled = true;
+  settings.headroomUrl = process.env.HEADROOM_URL || 'http://127.0.0.1:8787';
+  settings.headroomCompressUserMessages = true;
 
   db.prepare('INSERT INTO settings(id, data) VALUES(1, ?) ON CONFLICT(id) DO UPDATE SET data = excluded.data')
     .run(JSON.stringify(settings));
@@ -59,6 +78,10 @@ try {
   if (!settings.mitmRouterBaseUrl) { settings.mitmRouterBaseUrl = 'http://localhost:20128'; changed = true; }
   const desiredPort = parseInt(process.env.MITM_PORT, 10) || 8443;
   if (settings.mitmPort !== desiredPort) { settings.mitmPort = desiredPort; changed = true; }
+  if (settings.headroomEnabled !== true) { settings.headroomEnabled = true; changed = true; }
+  const headroomUrl = process.env.HEADROOM_URL || 'http://127.0.0.1:8787';
+  if (settings.headroomUrl !== headroomUrl) { settings.headroomUrl = headroomUrl; changed = true; }
+  if (settings.headroomCompressUserMessages !== true) { settings.headroomCompressUserMessages = true; changed = true; }
   if (changed) {
     db.prepare('INSERT INTO settings(id, data) VALUES(1, ?) ON CONFLICT(id) DO UPDATE SET data = excluded.data')
       .run(JSON.stringify(settings));
