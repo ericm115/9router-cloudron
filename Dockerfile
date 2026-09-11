@@ -2,7 +2,7 @@
 
 FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c6637eaf4a41ec4e596c
 
-ARG UPSTREAM_VERSION=0.5.69
+ARG UPSTREAM_VERSION=0.5.75
 
 RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-venv make g++ && rm -rf /var/lib/apt/lists/*
 
