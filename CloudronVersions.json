@@ -41,7 +41,7 @@
       },
       "creationDate": "Thu, 10 Sep 2026 00:00:00 GMT",
       "ts": "Thu, 10 Sep 2026 00:00:00 GMT",
-      "publishState": "testing"
+      "publishState": "published"
     },
     "0.4.1": {
       "manifest": {
@@ -73,7 +73,7 @@
       },
       "creationDate": "Tue, 08 Sep 2026 00:00:00 GMT",
       "ts": "Tue, 08 Sep 2026 00:00:00 GMT",
-      "publishState": "testing"
+      "publishState": "published"
     },
     "0.1.0": {
       "manifest": {
@@ -105,7 +105,7 @@
       },
       "creationDate": "Tue, 07 Jul 2026 18:49:16 GMT",
       "ts": "Tue, 07 Jul 2026 18:49:16 GMT",
-      "publishState": "testing"
+      "publishState": "published"
     }
   }
 }
