@@ -7,7 +7,7 @@
   "contactEmail": "vrobm@users.noreply.github.com",
   "website": "https://github.com/decolua/9router",
   "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "upstreamVersion": "0.5.75",
   "tags": [
     "ai",
@@ -17,7 +17,7 @@
   "healthCheckPath": "/",
   "manifestVersion": 2,
   "minBoxVersion": "9.1.0",
-  "memoryLimit": 1073741824,
+  "memoryLimit": 2147483648,
   "icon": "file://icon.png",
   "packagerName": "ericm115 (updated fork; original package by Robi)",
   "packagerUrl": "https://github.com/ericm115",

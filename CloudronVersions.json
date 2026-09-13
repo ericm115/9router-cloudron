@@ -1,6 +1,48 @@
 {
   "stable": true,
   "versions": {
+    "0.4.3": {
+      "manifest": {
+        "id": "com.toldyouso.9router",
+        "title": "9Router",
+        "tagline": "AI router and token saver for coding tools",
+        "description": "Routes requests across 40+ AI providers with RTK token saving, multi-account round-robin, MITM proxy, and a unified dashboard. Free providers: Kiro AI (Claude 4.5 unlimited) and OpenCode Free (no auth).",
+        "author": "decolua",
+        "contactEmail": "vrobm@users.noreply.github.com",
+        "website": "https://github.com/decolua/9router",
+        "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
+        "version": "0.4.3",
+        "upstreamVersion": "0.5.75",
+        "tags": ["ai", "agent"],
+        "httpPort": 20128,
+        "healthCheckPath": "/",
+        "manifestVersion": 2,
+        "minBoxVersion": "9.1.0",
+        "memoryLimit": 2147483648,
+        "icon": "file://icon.png",
+        "packagerName": "ericm115 (updated fork; original package by Robi)",
+        "packagerUrl": "https://github.com/ericm115",
+        "addons": {
+          "localstorage": {},
+          "oidc": {
+            "loginRedirectUri": "/api/auth/oidc/callback",
+            "logoutRedirectUri": "/",
+            "tokenSignatureAlgorithm": "RS256"
+          }
+        },
+        "postInstallMessage": "Open https://<your-app-domain>/dashboard — login with your Cloudron account (OIDC) or use default password: 123456. MITM proxy auto-starts on port 8443 for token optimization.",
+        "mediaLinks": [
+          "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
+          "https://raw.githubusercontent.com/decolua/9router/master/images/fusion-combo-ui.png"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
+        "changelog": "* Restart Headroom automatically if its proxy exits\n* Make bundled Headroom detectable in Token Saver settings\n* Use persistent Headroom home directory and increase memory limit to 2 GB\n",
+        "dockerImage": "docker.io/emoralesjw/9router:0.4.3"
+      },
+      "creationDate": "Sun, 13 Sep 2026 01:05:42 GMT",
+      "ts": "Sun, 13 Sep 2026 01:05:42 GMT",
+      "publishState": "published"
+    },
     "0.4.2": {
       "manifest": {
         "id": "com.toldyouso.9router",

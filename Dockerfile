@@ -36,6 +36,8 @@ ENV INITIAL_PASSWORD=123456
 ENV MITM_PORT=8443
 ENV HEADROOM_URL=http://127.0.0.1:8787
 ENV HEADROOM_CONFIG_DIR=/app/data/headroom
+ENV HOME=/app/data/headroom
+ENV PATH=/opt/headroom/bin:$PATH
 ENV HEADROOM_BEACON=off
 
 COPY start.sh ./

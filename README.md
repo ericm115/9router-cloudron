@@ -47,7 +47,7 @@ cloudron install
 | License | MIT |
 | Port | 20128 |
 | Data | `/app/data` (SQLite, backed up) |
-| Memory | 1 GB |
+| Memory | 2 GB |
 
 ## Publishing
 

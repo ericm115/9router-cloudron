@@ -12,11 +12,24 @@ fi
 
 mkdir -p /app/data/headroom
 chown -R cloudron:cloudron /app/data/headroom
-gosu cloudron:cloudron /opt/headroom/bin/headroom proxy --host 127.0.0.1 --port 8787 --no-telemetry > /app/data/headroom/proxy.log 2>&1 &
-HEADROOM_PID=$!
+: > /app/data/headroom/proxy.log
+chown cloudron:cloudron /app/data/headroom/proxy.log
+run_headroom() {
+    while true; do
+        if gosu cloudron:cloudron /opt/headroom/bin/headroom proxy --host 127.0.0.1 --port 8787 --no-telemetry >> /app/data/headroom/proxy.log 2>&1; then
+            status=0
+        else
+            status=$?
+        fi
+        printf '%s Headroom exited with status %s; restarting in 2 seconds\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" "$status" >> /app/data/headroom/proxy.log
+        sleep 2
+    done
+}
+run_headroom &
+HEADROOM_SUPERVISOR_PID=$!
 sleep 2
-if ! kill -0 "$HEADROOM_PID" 2>/dev/null; then
-    echo "Failed to start Headroom" >&2
+if ! kill -0 "$HEADROOM_SUPERVISOR_PID" 2>/dev/null; then
+    echo "Failed to start Headroom supervisor" >&2
     exit 1
 fi
 

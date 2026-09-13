@@ -1,3 +1,8 @@
+[0.4.3]
+* Restart Headroom automatically if its proxy exits
+* Make bundled Headroom detectable in Token Saver settings
+* Use persistent Headroom home directory and increase memory limit to 2 GB
+
 [0.4.2]
 * Updated upstream 9Router to 0.5.75
 * Preserved Headroom token compression and Cloudron password fix
