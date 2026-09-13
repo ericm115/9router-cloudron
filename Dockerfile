@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git python3 pyt
 
 RUN mkdir -p /app/code /app/data /opt/headroom \
     && python3 -m venv /opt/headroom \
-    && /opt/headroom/bin/pip install --no-cache-dir "headroom-ai[proxy]" \
+    && /opt/headroom/bin/pip install --no-cache-dir "headroom-ai[proxy,code]" \
     && git clone --branch "v${UPSTREAM_VERSION}" --depth 1 https://github.com/decolua/9router.git /tmp/9router
 
 WORKDIR /app/code

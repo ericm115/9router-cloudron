@@ -10,13 +10,13 @@ if [[ ! -x /opt/headroom/bin/headroom ]]; then
     exit 1
 fi
 
-mkdir -p /app/data/headroom
+mkdir -p /app/data/headroom/.headroom /app/data/headroom/cache /app/data/headroom/config /app/data/headroom/data
 chown -R cloudron:cloudron /app/data/headroom
 : > /app/data/headroom/proxy.log
 chown cloudron:cloudron /app/data/headroom/proxy.log
 run_headroom() {
     while true; do
-        if gosu cloudron:cloudron /opt/headroom/bin/headroom proxy --host 127.0.0.1 --port 8787 --no-telemetry >> /app/data/headroom/proxy.log 2>&1; then
+        if gosu cloudron:cloudron env HOME=/app/data/headroom HEADROOM_CONFIG_DIR=/app/data/headroom XDG_CACHE_HOME=/app/data/headroom/cache XDG_CONFIG_HOME=/app/data/headroom/config XDG_DATA_HOME=/app/data/headroom/data /opt/headroom/bin/headroom proxy --host 127.0.0.1 --port 8787 --no-telemetry --code-aware >> /app/data/headroom/proxy.log 2>&1; then
             status=0
         else
             status=$?

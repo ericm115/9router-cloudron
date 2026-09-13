@@ -23,7 +23,7 @@ Cloudron community package for [9Router](https://github.com/decolua/9router), a 
 2. Default password: `123456` — change it immediately
 3. Add your AI provider API keys in Providers
 4. Point your coding tools to `https://<your-domain>/v1`
-5. Headroom starts automatically on `127.0.0.1:8787` and is enabled in Token Saver settings
+5. Headroom starts automatically on `127.0.0.1:8787`, includes code-aware compression, and stores its persistent data under `/app/data/headroom`
 
 ## Installation on Cloudron
 

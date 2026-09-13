@@ -1,3 +1,7 @@
+[0.4.4]
+* Persist Headroom cache, configuration, models, and CCR retrieval data under `/app/data/headroom`
+* Preinstall and enable Headroom code-aware AST compression
+
 [0.4.3]
 * Restart Headroom automatically if its proxy exits
 * Make bundled Headroom detectable in Token Saver settings

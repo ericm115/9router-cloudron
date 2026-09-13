@@ -12,7 +12,7 @@
 ## Current setup
 
 - `Dockerfile` clones upstream tag `v${UPSTREAM_VERSION}` during image build.
-- `Dockerfile` installs `headroom-ai[proxy]` in `/opt/headroom`.
+- `Dockerfile` installs `headroom-ai[proxy,code]` in `/opt/headroom`.
 - `start.sh` starts Headroom on `127.0.0.1:8787`.
 - `start.sh` enables Headroom in 9Router SQLite settings.
 - Headroom data lives in `/app/data/headroom`.
