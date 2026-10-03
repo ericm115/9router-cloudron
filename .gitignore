@@ -11,3 +11,6 @@ logs
 .env.*.local
 npm-debug.log*
 upstream/
+/AGENTS.md
+/UPDATE_RUNBOOK.md
+/.agents/
