@@ -43,7 +43,7 @@ cloudron install
 | Component | Detail |
 |-----------|--------|
 | Upstream | https://github.com/decolua/9router |
-| Upstream version | 0.5.111 |
+| Upstream version | 0.5.112 |
 | License | MIT |
 | Port | 20128 |
 | Data | `/app/data` (SQLite, backed up) |
