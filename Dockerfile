@@ -2,14 +2,19 @@
 
 FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c6637eaf4a41ec4e596c
 
-ARG UPSTREAM_VERSION=0.5.112
+ARG UPSTREAM_VERSION=0.5.116
+ARG UPSTREAM_COMMIT=1339107e624d1ab150c6a0c2c2ee22caa7e9db2f
 
 RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-venv make g++ && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /app/code /app/data /opt/headroom \
     && python3 -m venv /opt/headroom \
     && /opt/headroom/bin/pip install --no-cache-dir "headroom-ai[proxy,code]" \
-    && git clone --branch "v${UPSTREAM_VERSION}" --depth 1 https://github.com/decolua/9router.git /tmp/9router
+    && git init /tmp/9router \
+    && git -C /tmp/9router remote add origin https://github.com/decolua/9router.git \
+    && git -C /tmp/9router fetch --depth 1 origin "${UPSTREAM_COMMIT}" \
+    && git -C /tmp/9router checkout --detach FETCH_HEAD \
+    && test "$(node -p 'require("/tmp/9router/package.json").version')" = "${UPSTREAM_VERSION}"
 
 WORKDIR /app/code
 RUN cp /tmp/9router/package.json ./
