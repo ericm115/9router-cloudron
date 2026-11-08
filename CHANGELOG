@@ -1,3 +1,7 @@
+[0.4.13]
+* Use a multi-stage build to exclude build tools, dependency caches and build intermediates from the runtime image
+* Preserve upstream 9Router 0.5.116, Cloudron OIDC and Headroom
+
 [0.4.12]
 * Updated upstream 9Router to 0.5.116 (source commit 1339107e624d1ab150c6a0c2c2ee22caa7e9db2f)
 

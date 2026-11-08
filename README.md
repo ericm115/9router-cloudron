@@ -50,6 +50,12 @@ cloudron install
 | Data | `/app/data` (SQLite, backed up) |
 | Memory | 2 GB |
 
+## Build policy
+
+Prefer multi-stage Docker builds. Keep compilers, source checkouts, package caches and build intermediates out of the final runtime image; preserve upstream's explicit runtime assets and lazy dependencies.
+
+Before publishing, compare `docker image inspect IMAGE --format '{{.Size}}'` and `docker history IMAGE` with the previous release. In the named test container, run `MSYS_NO_PATHCONV=1 docker exec -i 9router-cloudron-test /bin/bash < tests/check-image.sh` from Git Bash, then verify both 9Router and Headroom health endpoints return HTTP 200.
+
 ## Publishing
 
 To publish as a Cloudron community app:
