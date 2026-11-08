@@ -1,6 +1,10 @@
 # syntax=docker/dockerfile:1.7
 
+FROM node:22.22.0-bookworm-slim@sha256:7cc56ef285a8568121537d17b05e72128f01b89c54607b51acf084a50ef483f3 AS node
 FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c6637eaf4a41ec4e596c
+
+# Keep Cloudron utilities while meeting upstream dependencies' Node >=22.19 requirement.
+COPY --from=node /usr/local/ /usr/local/
 
 ARG UPSTREAM_VERSION=0.5.116
 ARG UPSTREAM_COMMIT=1339107e624d1ab150c6a0c2c2ee22caa7e9db2f
