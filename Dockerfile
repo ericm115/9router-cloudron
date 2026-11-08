@@ -5,6 +5,8 @@ FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c663
 
 # Keep Cloudron utilities while meeting upstream dependencies' Node >=22.19 requirement.
 COPY --from=node /usr/local/ /usr/local/
+ENV PATH=/usr/local/bin:$PATH
+RUN test "$(node --version)" = "v22.22.0"
 
 ARG UPSTREAM_VERSION=0.5.116
 ARG UPSTREAM_COMMIT=1339107e624d1ab150c6a0c2c2ee22caa7e9db2f
