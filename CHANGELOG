@@ -1,3 +1,6 @@
+[0.4.15]
+* Declare the assistant role in Codex Responses-to-Chat streams so role-sensitive clients can retain tool calls
+
 [0.4.14]
 * Refresh embedded Ponytail prompts to official v5.3.3 with Lite/Full/Ultra controls preserved
 * Patch minimatch lint-tooling denial of service (GHSA-g3hv-75wg-m249)

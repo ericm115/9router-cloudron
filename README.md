@@ -65,6 +65,20 @@ This is prompt-only integration, not the official plugin's hooks, commands or ta
 
 Run `node tests/check-ponytail.mjs` for the source regression check.
 
+## LibreChat tool-call compatibility
+
+`overrides/apply-responses-role.mjs` patches the pinned upstream Responses-to-Chat
+translator before Next builds. The first emitted delta declares the assistant
+role, so role-sensitive clients such as LibreChat can retain tool calls. Other
+translators and stream termination are unchanged. The build stops if the patch
+entry point is missing or the patch is already applied.
+
+Run `node tests/check-responses-role.mjs PATH_TO_PINNED_OPEN_SSE` against the
+`open-sse` directory from `UPSTREAM_COMMIT` in the Dockerfile. The local
+`upstream/` checkout can be older and is not a build input. The check covers
+text, reasoning, parallel tool calls, errors, and duplicate patch rejection.
+A live LibreChat tool-call check is still required to confirm the fix for a deployed instance.
+
 Package 0.4.14 also overrides only the lint tooling's transitive `minimatch` to
 11.0.1 for [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
 The build runs `npm audit --audit-level=moderate` before compiling; upstream

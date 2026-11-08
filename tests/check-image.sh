@@ -25,6 +25,17 @@ import { createRequire } from 'node:module';
 import { loadRuntimeDep } from './open-sse/services/lazyRuntime.js';
 import { PONYTAIL_VERSION, PONYTAIL_PROMPTS } from './open-sse/rtk/ponytailPrompt.js';
 import { injectPonytail } from './open-sse/rtk/ponytail.js';
+import { openaiResponsesToOpenAIResponse } from './open-sse/translator/response/openai-responses.js';
+const roleState = {};
+const toolStart = openaiResponsesToOpenAIResponse({
+    type: 'response.output_item.added',
+    item: { type: 'function_call', id: 'fc_test', call_id: 'call_test', name: 'get_weather' },
+}, roleState);
+assert.equal(toolStart.choices[0].delta.role, 'assistant');
+assert.equal(toolStart.choices[0].delta.tool_calls[0].function.name, 'get_weather');
+const toolEnd = openaiResponsesToOpenAIResponse({ type: 'response.completed', response: {} }, roleState);
+assert.equal(toolEnd.choices[0].finish_reason, 'tool_calls');
+assert.equal(toolEnd.choices[0].delta.role, undefined);
 assert.equal(PONYTAIL_VERSION, '5.3.3');
 for (const level of ['lite', 'full', 'ultra']) {
     const body = { messages: [{ role: 'user', content: 'test' }] };

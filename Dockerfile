@@ -21,6 +21,8 @@ RUN python3 -m venv /opt/headroom \
 
 # Apply before Next builds so traced/bundled copies use the same prompt.
 COPY overrides/ponytailPrompt.js overrides/ponytail.LICENSE /app/code/open-sse/rtk/
+COPY overrides/apply-responses-role.mjs /opt/apply-responses-role.mjs
+RUN node /opt/apply-responses-role.mjs
 
 WORKDIR /app/code
 ENV NEXT_TELEMETRY_DISABLED=1
