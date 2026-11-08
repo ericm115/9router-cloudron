@@ -1,3 +1,7 @@
+[0.4.14]
+* Refresh embedded Ponytail prompts to official v5.3.3 with Lite/Full/Ultra controls preserved
+* Patch minimatch lint-tooling denial of service (GHSA-g3hv-75wg-m249)
+
 [0.4.13]
 * Use a multi-stage build to exclude build tools, dependency caches and build intermediates from the runtime image
 * Preserve upstream 9Router 0.5.116, Cloudron OIDC and Headroom

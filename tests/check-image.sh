@@ -13,6 +13,7 @@ done
 for path in custom-server.js public .next/static src/mitm/server.js open-sse node_modules/sql.js/dist/sql-wasm.wasm; do
     test -e "$path"
 done
+test -s open-sse/rtk/ponytail.LICENSE
 test ! -e .git
 test ! -e .next/cache
 test ! -e /root/.npm
@@ -22,6 +23,22 @@ node --input-type=module <<'JS'
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { loadRuntimeDep } from './open-sse/services/lazyRuntime.js';
+import { PONYTAIL_VERSION, PONYTAIL_PROMPTS } from './open-sse/rtk/ponytailPrompt.js';
+import { injectPonytail } from './open-sse/rtk/ponytail.js';
+assert.equal(PONYTAIL_VERSION, '5.3.3');
+for (const level of ['lite', 'full', 'ultra']) {
+    const body = { messages: [{ role: 'user', content: 'test' }] };
+    injectPonytail(body, 'openai', level);
+    assert.equal(body.messages[0].content, PONYTAIL_PROMPTS[level]);
+    injectPonytail(body, 'openai', level);
+    assert.equal(body.messages.length, 2);
+    assert.equal(body.messages[0].content, PONYTAIL_PROMPTS[level]);
+}
+assert.doesNotThrow(() => injectPonytail(null, 'openai', 'full'));
+assert.doesNotThrow(() => injectPonytail(Object.freeze({}), 'openai', 'full'));
+const invalidLevel = { messages: [] };
+injectPonytail(invalidLevel, 'openai', 'invalid');
+assert.deepEqual(invalidLevel.messages, []);
 const require = createRequire(import.meta.url);
 // Exercise the app's real loader without npm or a populated runtime fallback.
 const wreq = await loadRuntimeDep('wreq-js');

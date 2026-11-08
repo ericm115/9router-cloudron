@@ -50,6 +50,26 @@ cloudron install
 | Data | `/app/data` (SQLite, backed up) |
 | Memory | 2 GB |
 
+## Ponytail
+
+This package replaces 9Router's older embedded prompt with an adaptation of
+[Ponytail v5.3.3](https://github.com/DietrichGebert/ponytail/tree/v5.3.3)
+(commit `7801d061243d7b753bad0e0b3c057cd250b11755`). The tracked override in
+`overrides/ponytailPrompt.js` is applied before the upstream build. Its MIT notice
+is included alongside the runtime module.
+
+Lite/Full/Ultra and the existing dashboard toggle remain unchanged. Session commands
+are replaced with 9Router settings guidance: use the dashboard to disable it, or
+send `x-9router-token-saver: off` to bypass all token savers for one request.
+This is prompt-only integration, not the official plugin's hooks, commands or task board.
+
+Run `node tests/check-ponytail.mjs` for the source regression check.
+
+Package 0.4.14 also overrides only the lint tooling's transitive `minimatch` to
+11.0.1 for [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
+The build runs `npm audit --audit-level=moderate` before compiling; upstream
+9Router remains pinned to 0.5.116.
+
 ## Build policy
 
 Prefer multi-stage Docker builds. Keep compilers, source checkouts, package caches and build intermediates out of the final runtime image; preserve upstream's explicit runtime assets and lazy dependencies.

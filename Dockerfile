@@ -19,9 +19,16 @@ RUN python3 -m venv /opt/headroom \
     && test "$(git -C /app/code rev-parse HEAD)" = "${UPSTREAM_COMMIT}" \
     && test "$(node -p 'require("/app/code/package.json").version')" = "${UPSTREAM_VERSION}"
 
+# Apply before Next builds so traced/bundled copies use the same prompt.
+COPY overrides/ponytailPrompt.js overrides/ponytail.LICENSE /app/code/open-sse/rtk/
+
 WORKDIR /app/code
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm install && npm run build
+COPY tests/check-lint-deps.cjs /opt/check-lint-deps.cjs
+# GHSA-g3hv-75wg-m249: patch only the affected lint-tooling dependency.
+RUN npm pkg set 'overrides.@typescript-eslint/typescript-estree.minimatch=11.0.1' \
+&& npm install && npm audit --audit-level=moderate \
+&& node /opt/check-lint-deps.cjs && npm run build
 
 # Next tracing omits these lazy createRequire dependencies (upstream issue #5245).
 RUN mkdir -p /opt/lazy-runtime && cd /opt/lazy-runtime \
