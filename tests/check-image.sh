@@ -25,7 +25,19 @@ import { createRequire } from 'node:module';
 import { loadRuntimeDep } from './open-sse/services/lazyRuntime.js';
 import { PONYTAIL_VERSION, PONYTAIL_PROMPTS } from './open-sse/rtk/ponytailPrompt.js';
 import { injectPonytail } from './open-sse/rtk/ponytail.js';
-import { openaiResponsesToOpenAIResponse } from './open-sse/translator/response/openai-responses.js';
+import { readFile } from 'node:fs/promises';
+import { runInNewContext } from 'node:vm';
+// Check the copied translator without loading the unbundled provider registry.
+const translator = await readFile('./open-sse/translator/response/openai-responses.js', 'utf8');
+const chunkBuilder = await readFile('./open-sse/translator/concerns/chunk.js', 'utf8');
+const openaiResponsesToOpenAIResponse = runInNewContext(
+    chunkBuilder.replace(/^export /gm, '') + '\n' +
+    translator.replace(/^import .*;\r?\n/gm, '').replace(/^export /gm, '') +
+    '\nopenaiResponsesToOpenAIResponse;', {
+        register() {}, FORMATS: {}, ROLE: { ASSISTANT: 'assistant' },
+        RESPONSES_ITEM: { FUNCTION_CALL: 'function_call' }, OPENAI_BLOCK: { FUNCTION: 'function' },
+        OPENAI_FINISH: { TOOL_CALLS: 'tool_calls', STOP: 'stop' }, MODEL_FALLBACK: 'unknown',
+    });
 const roleState = {};
 const toolStart = openaiResponsesToOpenAIResponse({
     type: 'response.output_item.added',
