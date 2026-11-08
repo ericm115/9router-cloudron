@@ -44,6 +44,7 @@ cloudron install
 |-----------|--------|
 | Upstream | https://github.com/decolua/9router |
 | Upstream version | 0.5.116 (commit `1339107e624d1ab150c6a0c2c2ee22caa7e9db2f`) |
+| Base image | Official Node 22.23.4, Debian bookworm-slim (linux/amd64) |
 | License | MIT |
 | Port | 20128 |
 | Data | `/app/data` (SQLite, backed up) |

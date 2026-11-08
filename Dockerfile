@@ -1,17 +1,17 @@
 # syntax=docker/dockerfile:1.7
 
-FROM node:22.22.0-bookworm-slim@sha256:7cc56ef285a8568121537d17b05e72128f01b89c54607b51acf084a50ef483f3 AS node
-FROM cloudron/base:5.0.0@sha256:04fd70dbd8ad6149c19de39e35718e024417c3e01dc9c6637eaf4a41ec4e596c
+FROM node:22.23.4-bookworm-slim@sha256:aaa4b5baf1ecff3b283486bb1f90405cdda225a3e6f79660d2c559fa510a7292
 
-# Keep Cloudron utilities while meeting upstream dependencies' Node >=22.19 requirement.
-COPY --from=node /usr/local/ /usr/local/
-ENV PATH=/usr/local/bin:$PATH
-RUN test "$(node --version)" = "v22.22.0"
+RUN test "$(node --version)" = "v22.23.4"
 
 ARG UPSTREAM_VERSION=0.5.116
 ARG UPSTREAM_COMMIT=1339107e624d1ab150c6a0c2c2ee22caa7e9db2f
 
-RUN apt-get update && apt-get install -y --no-install-recommends git python3 python3-venv make g++ && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash ca-certificates git gosu python3 python3-venv make g++ ffmpeg \
+    && rm -rf /var/lib/apt/lists/* \
+    && groupmod --new-name cloudron node \
+    && usermod --login cloudron --home /app/data/headroom node
 
 RUN mkdir -p /app/code /app/data /opt/headroom \
     && python3 -m venv /opt/headroom \
