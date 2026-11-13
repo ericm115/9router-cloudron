@@ -7,8 +7,8 @@
   "contactEmail": "vrobm@users.noreply.github.com",
   "website": "https://github.com/decolua/9router",
   "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
-  "version": "0.4.15",
-  "upstreamVersion": "0.5.116",
+  "version": "0.4.16",
+  "upstreamVersion": "0.5.119",
   "tags": [
     "ai",
     "agent"

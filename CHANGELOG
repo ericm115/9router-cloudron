@@ -1,3 +1,7 @@
+[0.4.16]
+* Update upstream to v0.5.119 (1855aa44473e88feac9d3f131b9c0c5fc9706b68); upstream package.json still reports 0.5.116
+* Preserve LibreChat assistant-role fix, Ponytail v5.3.3, Headroom and Cloudron integration
+
 [0.4.15]
 * Declare the assistant role in Codex Responses-to-Chat streams so role-sensitive clients can retain tool calls
 

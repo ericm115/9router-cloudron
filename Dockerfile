@@ -3,8 +3,10 @@
 FROM --platform=linux/amd64 node:22.23.4-bookworm-slim@sha256:aaa4b5baf1ecff3b283486bb1f90405cdda225a3e6f79660d2c559fa510a7292 AS base
 
 FROM base AS builder
-ARG UPSTREAM_VERSION=0.5.116
-ARG UPSTREAM_COMMIT=1339107e624d1ab150c6a0c2c2ee22caa7e9db2f
+ARG UPSTREAM_VERSION=0.5.119
+# v0.5.119's verified source still declares 0.5.116; keep this check explicit.
+ARG UPSTREAM_PACKAGE_VERSION=0.5.116
+ARG UPSTREAM_COMMIT=1855aa44473e88feac9d3f131b9c0c5fc9706b68
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates git python3 python3-venv make g++ \
@@ -17,7 +19,7 @@ RUN python3 -m venv /opt/headroom \
     && git -C /app/code fetch --depth 1 origin "${UPSTREAM_COMMIT}" \
     && git -C /app/code checkout --detach FETCH_HEAD \
     && test "$(git -C /app/code rev-parse HEAD)" = "${UPSTREAM_COMMIT}" \
-    && test "$(node -p 'require("/app/code/package.json").version')" = "${UPSTREAM_VERSION}"
+    && test "$(node -p 'require("/app/code/package.json").version')" = "${UPSTREAM_PACKAGE_VERSION}"
 
 # Apply before Next builds so traced/bundled copies use the same prompt.
 COPY overrides/ponytailPrompt.js overrides/ponytail.LICENSE /app/code/open-sse/rtk/
