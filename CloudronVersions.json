@@ -1,6 +1,51 @@
 {
   "stable": true,
   "versions": {
+    "0.4.17": {
+      "creationDate": "Tue, 24 Nov 2026 21:44:48 GMT",
+      "manifest": {
+        "addons": {
+          "localstorage": {},
+          "oidc": {
+            "loginRedirectUri": "/api/auth/oidc/callback",
+            "logoutRedirectUri": "/",
+            "tokenSignatureAlgorithm": "RS256"
+          }
+        },
+        "author": "decolua",
+        "changelog": "* Update upstream to v0.5.123 (5ae63d22847e07042e235b40e1d926b65e509013)\n* The upstream package now reports 0.5.123 instead of 0.5.116\n",
+        "contactEmail": "vrobm@users.noreply.github.com",
+        "description": "Routes requests across 40+ AI providers with RTK token saving, multi-account round-robin, MITM proxy, and a unified dashboard. Free providers: Kiro AI (Claude 4.5 unlimited) and OpenCode Free (no auth).",
+        "dockerImage": "docker.io/emoralesjw/9router:0.4.17",
+        "documentationUrl": "https://github.com/decolua/9router/blob/master/README.md",
+        "healthCheckPath": "/",
+        "httpPort": 20128,
+        "icon": "file://icon.png",
+        "iconUrl": "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
+        "id": "com.toldyouso.9router",
+        "manifestVersion": 2,
+        "mediaLinks": [
+          "https://raw.githubusercontent.com/decolua/9router/master/images/9router.png",
+          "https://raw.githubusercontent.com/decolua/9router/master/images/fusion-combo-ui.png"
+        ],
+        "memoryLimit": 2147483648,
+        "minBoxVersion": "9.1.0",
+        "packagerName": "ericm115 (updated fork; original package by Robi)",
+        "packagerUrl": "https://github.com/ericm115",
+        "postInstallMessage": "Open https://<your-app-domain>/dashboard \u2014 login with your Cloudron account (OIDC) or use default password: 123456. MITM proxy auto-starts on port 8443 for token optimization.",
+        "tagline": "AI router and token saver for coding tools",
+        "tags": [
+          "ai",
+          "agent"
+        ],
+        "title": "9Router",
+        "upstreamVersion": "0.5.123",
+        "version": "0.4.17",
+        "website": "https://github.com/decolua/9router"
+      },
+      "publishState": "published",
+      "ts": "Tue, 24 Nov 2026 21:44:48 GMT"
+    },
     "0.4.16": {
       "manifest": {
         "id": "com.toldyouso.9router",

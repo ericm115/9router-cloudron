@@ -3,10 +3,9 @@
 FROM --platform=linux/amd64 node:22.23.4-bookworm-slim@sha256:aaa4b5baf1ecff3b283486bb1f90405cdda225a3e6f79660d2c559fa510a7292 AS base
 
 FROM base AS builder
-ARG UPSTREAM_VERSION=0.5.119
-# v0.5.119's verified source still declares 0.5.116; keep this check explicit.
-ARG UPSTREAM_PACKAGE_VERSION=0.5.116
-ARG UPSTREAM_COMMIT=1855aa44473e88feac9d3f131b9c0c5fc9706b68
+ARG UPSTREAM_VERSION=0.5.123
+ARG UPSTREAM_PACKAGE_VERSION=0.5.123
+ARG UPSTREAM_COMMIT=5ae63d22847e07042e235b40e1d926b65e509013
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates git python3 python3-venv make g++ \

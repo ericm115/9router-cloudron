@@ -43,7 +43,7 @@ cloudron install
 | Component | Detail |
 |-----------|--------|
 | Upstream | https://github.com/decolua/9router |
-| Upstream version | v0.5.119 (commit `1855aa44473e88feac9d3f131b9c0c5fc9706b68`; upstream package.json reports 0.5.116) |
+| Upstream version | v0.5.123 (commit `5ae63d22847e07042e235b40e1d926b65e509013`) |
 | Base image | Official Node 22.23.4, Debian bookworm-slim (linux/amd64) |
 | License | MIT |
 | Port | 20128 |
@@ -82,7 +82,7 @@ A live LibreChat tool-call check is still required to confirm the fix for a depl
 Package 0.4.14 also overrides only the lint tooling's transitive `minimatch` to
 11.0.1 for [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
 The build runs `npm audit --audit-level=moderate` before compiling; upstream
-9Router is pinned to the v0.5.119 tag commit. That upstream source still declares package version 0.5.116; the build verifies this separately through `UPSTREAM_PACKAGE_VERSION` without rewriting upstream's manifest. The dashboard may therefore still display 0.5.116.
+9Router is pinned to the v0.5.123 tag commit. Its upstream package declares 0.5.123. The build verifies the declared version without rewriting upstream's manifest.
 
 ## Build policy
 
